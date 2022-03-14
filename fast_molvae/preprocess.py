@@ -1,13 +1,15 @@
+from __future__ import absolute_import
 import torch
 import torch.nn as nn
 from multiprocessing import Pool
 
 import math, random, sys
 from optparse import OptionParser
-import cPickle as pickle
+import six.moves.cPickle as pickle
 
 from fast_jtnn import *
 import rdkit
+from six.moves import range
 
 def tensorize(smiles, assm=True):
     mol_tree = MolTree(smiles)
@@ -45,7 +47,7 @@ if __name__ == "__main__":
 
     le = (len(all_data) + num_splits - 1) / num_splits
 
-    for split_id in xrange(num_splits):
+    for split_id in range(num_splits):
         st = split_id * le
         sub_data = all_data[st : st + le]
 

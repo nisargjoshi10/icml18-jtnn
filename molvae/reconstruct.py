@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import torch
 import torch.nn as nn
 from torch.autograd import Variable
@@ -52,7 +54,7 @@ for smiles in data:
     if dec_smiles == smiles3D:
         acc += 1
     tot += 1
-    print acc / tot
+    print(acc / tot)
     """
     dec_smiles = model.recon_eval(smiles3D)
     tot += len(dec_smiles)

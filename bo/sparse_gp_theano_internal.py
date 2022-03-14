@@ -1,4 +1,5 @@
 
+from __future__ import absolute_import
 import theano
 import theano.tensor as T
 
@@ -9,6 +10,7 @@ from gauss import *
 from theano.tensor.slinalg import Cholesky as MatrixChol
 
 import math
+from six.moves import range
 
 def n_pdf(x):
     return 1.0 / T.sqrt(2 * math.pi) * T.exp(-0.5 * x**2)

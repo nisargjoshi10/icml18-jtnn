@@ -17,6 +17,7 @@
 #
 from __future__ import print_function
 
+from __future__ import absolute_import
 from rdkit import Chem
 from rdkit.Chem import rdMolDescriptors
 from rdkit.six.moves import cPickle
@@ -26,6 +27,7 @@ import math
 from collections import defaultdict
 
 import os.path as op
+from six.moves import range
 
 _fscores = None
 def readFragmentScores(name='fpscores'):

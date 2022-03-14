@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -12,6 +14,7 @@ import rdkit.Chem as Chem
 from rdkit.Chem import Draw
 
 from jtnn import *
+from six.moves import range
 
 lg = rdkit.RDLogger.logger() 
 lg.setLevel(rdkit.RDLogger.CRITICAL)
@@ -43,5 +46,5 @@ model.load_state_dict(load_dict)
 model = model.cuda()
 
 torch.manual_seed(0)
-for i in xrange(nsample):
-    print model.sample_prior(prob_decode=False)
+for i in range(nsample):
+    print(model.sample_prior(prob_decode=False))

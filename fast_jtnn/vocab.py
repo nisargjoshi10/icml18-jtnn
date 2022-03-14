@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import rdkit
 import rdkit.Chem as Chem
 import copy
