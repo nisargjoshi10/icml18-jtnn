@@ -3,8 +3,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from collections import deque
-from .mol_tree import Vocab, MolTree
-from .nnutils import create_var, index_select_ND
+from mol_tree import Vocab, MolTree
+from nnutils import create_var, index_select_ND
 from six.moves import range
 
 class JTNNEncoder(nn.Module):

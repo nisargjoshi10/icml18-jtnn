@@ -6,7 +6,7 @@ from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import minimum_spanning_tree
 from collections import defaultdict
 from rdkit.Chem.EnumerateStereoisomers import EnumerateStereoisomers, StereoEnumerationOptions
-from .vocab import Vocab
+from vocab import Vocab
 import six
 from six.moves import range
 from six.moves import zip

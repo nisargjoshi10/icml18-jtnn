@@ -2,8 +2,8 @@ from __future__ import absolute_import
 from __future__ import print_function
 import rdkit
 import rdkit.Chem as Chem
-from .chemutils import get_clique_mol, tree_decomp, get_mol, get_smiles, set_atommap, enum_assemble, decode_stereo
-from .vocab import *
+from chemutils import get_clique_mol, tree_decomp, get_mol, get_smiles, set_atommap, enum_assemble, decode_stereo
+from vocab import *
 from six.moves import zip
 
 class MolTreeNode(object):

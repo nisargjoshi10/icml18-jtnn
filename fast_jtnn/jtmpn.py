@@ -2,8 +2,8 @@ from __future__ import absolute_import
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from .nnutils import create_var, index_select_ND
-from .chemutils import get_mol
+from nnutils import create_var, index_select_ND
+from chemutils import get_mol
 import rdkit.Chem as Chem
 from six.moves import range
 
