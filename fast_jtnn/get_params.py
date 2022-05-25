@@ -8,9 +8,8 @@ from jtnn_dec import JTNNDecoder
 import ArgumentParser
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--train', required=True)
 parser.add_argument('--vocab', required=True)
-parser.add_argument('--save_dir', required=True)
+# parser.add_argument('--save_dir', required=True)
 parser.add_argument('--load_epoch', type=int, default=0)
 
 parser.add_argument('--hidden_size', type=int, default=450)
