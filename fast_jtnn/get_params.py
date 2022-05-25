@@ -47,15 +47,18 @@ vocab = Vocab(vocab)
 
 #encoder
 jtnn_enc = JTNNEncoder(args.hidden_size, args.depthT, nn.Embedding(vocab.size(), args.hidden_size))
-jtnn_enc_params = (sum([x.nelement() for x in enc.parameters()]) / 1000,)
+jtnn_enc_params = (sum([x.nelement() for x in jtnn_enc.parameters()]) / 1000,)
+print('jtnn_enc_params', jtnn_enc_params)
 
 mpn = MPN(args.hidden_size, args.depthG)
 mpn_params = (sum([x.nelement() for x in mpn.parameters()]) / 1000,)
+print('mpn_params', mpn_params)
 
 nn_models = nn.Linear(args.hidden_size, args.latent_size) #multiply with 4 since all the models would have the same no. of parameters
 nn_modles_params = (sum([x.nelement() for x in nn_models.parameters()]) / 1000,)
+print('nn_models_params', nn_models_params*4)
 
-enc_total = jtnn_enc_params + mpn_params + nn_modles_params
+enc_total = jtnn_enc_params + mpn_params + nn_modles_params*4
 print("Encoder total #Params: %dK" % enc_total)
 
 #decoder
