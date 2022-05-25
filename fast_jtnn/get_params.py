@@ -47,29 +47,26 @@ vocab = Vocab(vocab)
 
 #encoder
 jtnn_enc = JTNNEncoder(args.hidden_size, args.depthT, nn.Embedding(vocab.size(), args.hidden_size))
-jtnn_enc_params = (sum([x.nelement() for x in jtnn_enc.parameters()]) / 1000,)
-print('jtnn_enc_params', jtnn_enc_params)
+jtnn_enc_params = sum([x.nelement() for x in jtnn_enc.parameters()]) / 1000
 
 mpn = MPN(args.hidden_size, args.depthG)
-mpn_params = (sum([x.nelement() for x in mpn.parameters()]) / 1000,)
-print('mpn_params', mpn_params)
+mpn_params = sum([x.nelement() for x in mpn.parameters()]) / 1000
 
 nn_models = nn.Linear(args.hidden_size, args.latent_size) #multiply with 4 since all the models would have the same no. of parameters
-nn_modles_params = (sum([x.nelement() for x in nn_models.parameters()]) / 1000,)
-print('nn_models_params', nn_models_params*4)
+nn_models_params = sum([x.nelement() for x in nn_models.parameters()])*4 / 1000
 
-enc_total = jtnn_enc_params + mpn_params + nn_modles_params*4
+enc_total = jtnn_enc_params + mpn_params + nn_models_params
 print("Encoder total #Params: %dK" % enc_total)
 
 #decoder
 jtmpn = JTMPN(args.hidden_size, args.depthG)
-jtmpn_params = (sum([x.nelement() for x in jtmpn.parameters()]) / 1000,)
+jtmpn_params = sum([x.nelement() for x in jtmpn.parameters()]) / 1000
 
 dec = JTNNDecoder(vocab, args.hidden_size, args.latent_size, nn.Embedding(vocab.size(), args.hidden_size))
-dec_params = (sum([x.nelement() for x in dec.parameters()]) / 1000,)
+dec_params = sum([x.nelement() for x in dec.parameters()]) / 1000
 
 A_assm = nn.Linear(args.latent_size, args.hidden_size)
-A_assm_params = (sum([x.nelement() for x in A_assm.parameters()]) / 1000,)
+A_assm_params = sum([x.nelement() for x in A_assm.parameters()]) / 1000
 
 dec_total = jtmpn_params + dec_params + A_assm_params
 print("decoder total #Params: %dK" % dec_total)
