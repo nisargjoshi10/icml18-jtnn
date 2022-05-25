@@ -5,7 +5,11 @@ import torch.nn.functional as F
 import jtnn_vae
 from jtnn_enc import JTNNEncoder
 from jtnn_dec import JTNNDecoder
-import ArgumentParser
+import argparse
+import sys
+sys.path.append('../')
+from fast_jtnn import *
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--vocab', required=True)
@@ -39,9 +43,15 @@ vocab = [x.strip("\r\n ") for x in open(args.vocab)]
 vocab = Vocab(vocab)
 
 enc = JTNNEncoder(args.hidden_size, args.depthT, nn.Embedding(vocab.size(), args.hidden_size))
-print('encoder params:')
+print('encoder:')
 print(enc)
 
+print('encoder pararms:')
+print("Model #Params: %dK" % (sum([x.nelement() for x in enc.parameters()]) / 1000,))
+
 dec = JTNNDecoder(vocab, args.hidden_size, args.latent_size, nn.Embedding(vocab.size(), args.hidden_size))
-print('decoder params:')
+print('decoder')
 print(dec)
+
+print('decoder params:')
+print("Model #Params: %dK" % (sum([x.nelement() for x in dec.parameters()]) / 1000,))
