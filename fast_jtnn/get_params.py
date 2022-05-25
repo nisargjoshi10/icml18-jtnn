@@ -1,10 +1,10 @@
 import torch
 import torch.nn as nn
-import torch,.nn.functional as F
+import torch.nn.functional as F
 
 import jtnn_vae
-import jtnn_enc
-import jtnn_dec
+from jtnn_enc import JTNNEncoder
+from jtnn_dec import JTNNDecoder
 import ArgumentParser
 
 parser = argparse.ArgumentParser()
@@ -39,4 +39,10 @@ print(args)
 vocab = [x.strip("\r\n ") for x in open(args.vocab)]
 vocab = Vocab(vocab)
 
-enc =
+enc = JTNNEncoder(args.hidden_size, args.depthT, nn.Embedding(vocab.size(), args.hidden_size))
+print('encoder params:')
+print(enc)
+
+dec = JTNNDecoder(vocab, args.hidden_size, args.latent_size, nn.Embedding(vocab.size(), args.hidden_size))
+print('decoder params:')
+print(dec)
