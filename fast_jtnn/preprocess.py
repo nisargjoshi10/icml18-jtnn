@@ -48,7 +48,7 @@ if __name__ == "__main__":
     all_data = pool.map(tensorize, data)
 
     le = (len(all_data) + num_splits - 1) / num_splits
-
+    le = int(le)
     for split_id in range(num_splits):
         st = split_id * le
         sub_data = all_data[st : st + le]
